@@ -58,8 +58,8 @@ namespace ConsumidorApis.Service
             };
 
             using var client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:7274/");
-           // client.BaseAddress = new Uri("https://10.0.1.252:7274/");
+            //client.BaseAddress = new Uri("https://localhost:7274/");
+            client.BaseAddress = new Uri("https://10.0.1.252:7274/");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
 
             var response = await client.GetAsync("api/cars");
