@@ -34,7 +34,9 @@ namespace ConsumidorApis.Service
 
             using var client = new HttpClient(handler);
 
-            var response = await _httpClient.PostAsync("api/auth/login", content);
+            // Asegúrate de usar la URL completa
+            // var response = await client.PostAsync("https://localhost:7208/api/auth/login", content);
+            var response = await client.PostAsync("https://10.0.1.252:7274/api/auth/login", content);
             if (response.IsSuccessStatusCode)
             {
                 var responseBody = await response.Content.ReadAsStringAsync();
@@ -56,7 +58,8 @@ namespace ConsumidorApis.Service
             };
 
             using var client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://10.0.1.252:7274/");
+            client.BaseAddress = new Uri("https://localhost:7274/");
+           // client.BaseAddress = new Uri("https://10.0.1.252:7274/");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
 
             var response = await client.GetAsync("api/cars");
